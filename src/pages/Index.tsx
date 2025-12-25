@@ -1,13 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from "react-helmet-async";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import FeaturedHackathons from "@/components/FeaturedHackathons";
+import EmailAlertSection from "@/components/EmailAlertSection";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <Helmet>
+        <title>Hackathon Finder - Discover & Join Amazing Hackathons</title>
+        <meta
+          name="description"
+          content="Find your next hackathon adventure. A student-focused platform to discover hackathons worldwide, get email alerts, and never miss an opportunity to build and innovate."
+        />
+      </Helmet>
+
+      <div className="min-h-screen bg-background pb-20 md:pb-0">
+        <Navbar />
+        <main>
+          <HeroSection />
+          <FeaturedHackathons />
+          <EmailAlertSection />
+        </main>
+
+        {/* Footer */}
+        <footer className="py-8 border-t border-border">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-muted-foreground text-sm">
+              © 2025 HackathonFinder. Made with ❤️ for students.
+            </p>
+          </div>
+        </footer>
       </div>
-    </div>
+    </>
   );
 };
 

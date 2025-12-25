@@ -1,0 +1,246 @@
+export interface Hackathon {
+  id: string;
+  name: string;
+  organizer: string;
+  description: string;
+  longDescription: string;
+  date: {
+    start: string;
+    end: string;
+    month: string;
+    day: number;
+  };
+  location: string;
+  mode: "online" | "offline" | "hybrid";
+  type: "free" | "paid";
+  prize: string;
+  skills: string[];
+  eligibility: string[];
+  registrationUrl: string;
+  imageUrl: string;
+  participants: number;
+  deadline: string;
+}
+
+export const hackathons: Hackathon[] = [
+  {
+    id: "1",
+    name: "HackMIT 2025",
+    organizer: "MIT",
+    description: "Join 1000+ hackers for MIT's premier annual hackathon. Build innovative solutions over 24 hours.",
+    longDescription: "HackMIT is MIT's premier annual hackathon, bringing together over 1000 hackers from around the world. Over 24 hours, participants work in teams to build innovative projects addressing real-world challenges. With mentorship from industry experts, workshops, and amazing prizes, this is your chance to learn, create, and connect with the tech community.",
+    date: {
+      start: "2025-02-15",
+      end: "2025-02-16",
+      month: "FEB",
+      day: 15,
+    },
+    location: "Cambridge, MA",
+    mode: "offline",
+    type: "free",
+    prize: "$50,000",
+    skills: ["React", "Python", "Machine Learning", "Web3"],
+    eligibility: ["College Students", "18+ years"],
+    registrationUrl: "https://hackmit.org",
+    imageUrl: "",
+    participants: 1000,
+    deadline: "2025-01-30",
+  },
+  {
+    id: "2",
+    name: "Global AI Hackathon",
+    organizer: "Google Developer Groups",
+    description: "Build AI-powered solutions to solve global challenges. Open to developers worldwide.",
+    longDescription: "The Global AI Hackathon invites developers from around the world to create AI-powered solutions addressing global challenges such as climate change, healthcare, and education. Sponsored by Google, this virtual event offers access to cutting-edge APIs, mentorship from Google engineers, and prizes worth $100,000.",
+    date: {
+      start: "2025-03-01",
+      end: "2025-03-03",
+      month: "MAR",
+      day: 1,
+    },
+    location: "Virtual",
+    mode: "online",
+    type: "free",
+    prize: "$100,000",
+    skills: ["TensorFlow", "Python", "Cloud Computing", "NLP"],
+    eligibility: ["Open to All", "Team of 2-5"],
+    registrationUrl: "https://gdg.community.dev",
+    imageUrl: "",
+    participants: 5000,
+    deadline: "2025-02-20",
+  },
+  {
+    id: "3",
+    name: "FinTech Innovation Challenge",
+    organizer: "JP Morgan Chase",
+    description: "Revolutionize financial services with cutting-edge technology solutions.",
+    longDescription: "JP Morgan Chase's FinTech Innovation Challenge seeks bright minds to revolutionize the financial services industry. Participants will tackle real problems in payments, lending, and wealth management using blockchain, AI, and modern web technologies. Winners receive internship opportunities and substantial cash prizes.",
+    date: {
+      start: "2025-03-20",
+      end: "2025-03-22",
+      month: "MAR",
+      day: 20,
+    },
+    location: "New York, NY",
+    mode: "hybrid",
+    type: "free",
+    prize: "$75,000",
+    skills: ["Blockchain", "React", "Node.js", "Smart Contracts"],
+    eligibility: ["University Students", "Recent Graduates"],
+    registrationUrl: "https://jpmorgan.com/hackathon",
+    imageUrl: "",
+    participants: 500,
+    deadline: "2025-03-10",
+  },
+  {
+    id: "4",
+    name: "Health Tech Hack",
+    organizer: "Stanford Medicine",
+    description: "Create healthcare innovations that improve patient outcomes and medical research.",
+    longDescription: "Stanford Medicine's Health Tech Hack brings together engineers, designers, and healthcare professionals to create solutions that improve patient care. Focus areas include telemedicine, medical imaging AI, wearable health devices, and mental health applications. Participants gain access to medical datasets and expert mentors.",
+    date: {
+      start: "2025-04-05",
+      end: "2025-04-07",
+      month: "APR",
+      day: 5,
+    },
+    location: "Palo Alto, CA",
+    mode: "offline",
+    type: "paid",
+    prize: "$30,000",
+    skills: ["Healthcare AI", "Mobile Development", "Data Science", "IoT"],
+    eligibility: ["Students", "Healthcare Workers", "Developers"],
+    registrationUrl: "https://stanford.edu/healthhack",
+    imageUrl: "",
+    participants: 300,
+    deadline: "2025-03-25",
+  },
+  {
+    id: "5",
+    name: "Climate Action Hackathon",
+    organizer: "UN Environment Programme",
+    description: "Develop sustainable solutions to combat climate change and environmental challenges.",
+    longDescription: "The UN Environment Programme's Climate Action Hackathon challenges innovators to develop sustainable technology solutions. Projects may address carbon footprint tracking, renewable energy optimization, sustainable agriculture, or ocean conservation. Top projects may receive funding for further development.",
+    date: {
+      start: "2025-04-22",
+      end: "2025-04-24",
+      month: "APR",
+      day: 22,
+    },
+    location: "Virtual",
+    mode: "online",
+    type: "free",
+    prize: "$25,000",
+    skills: ["Sustainability", "IoT", "Data Analytics", "GIS"],
+    eligibility: ["Open to All", "Global Participants"],
+    registrationUrl: "https://unep.org/hackathon",
+    imageUrl: "",
+    participants: 2000,
+    deadline: "2025-04-10",
+  },
+  {
+    id: "6",
+    name: "EdTech Innovate",
+    organizer: "Coursera & edX",
+    description: "Transform education through technology. Build the future of learning.",
+    longDescription: "EdTech Innovate challenges participants to reimagine education using technology. Build solutions for personalized learning, accessibility, skill assessment, or collaborative education. Partner companies offer mentorship, API access, and the potential for pilot programs with their platforms.",
+    date: {
+      start: "2025-05-10",
+      end: "2025-05-12",
+      month: "MAY",
+      day: 10,
+    },
+    location: "San Francisco, CA",
+    mode: "hybrid",
+    type: "free",
+    prize: "$40,000",
+    skills: ["EdTech", "LMS", "AI/ML", "Gamification"],
+    eligibility: ["Students", "Educators", "Developers"],
+    registrationUrl: "https://edtechinnovate.com",
+    imageUrl: "",
+    participants: 800,
+    deadline: "2025-04-28",
+  },
+  {
+    id: "7",
+    name: "Web3 Builders Summit",
+    organizer: "Ethereum Foundation",
+    description: "Build decentralized applications that shape the future of the internet.",
+    longDescription: "The Web3 Builders Summit brings together blockchain enthusiasts to build decentralized applications. Focus areas include DeFi, NFTs, DAOs, and cross-chain solutions. Participants receive access to testnets, developer resources, and mentorship from core Ethereum developers.",
+    date: {
+      start: "2025-05-25",
+      end: "2025-05-27",
+      month: "MAY",
+      day: 25,
+    },
+    location: "Denver, CO",
+    mode: "offline",
+    type: "paid",
+    prize: "$150,000",
+    skills: ["Solidity", "Web3.js", "Smart Contracts", "DeFi"],
+    eligibility: ["Blockchain Developers", "Web3 Enthusiasts"],
+    registrationUrl: "https://ethereum.org/hackathon",
+    imageUrl: "",
+    participants: 600,
+    deadline: "2025-05-15",
+  },
+  {
+    id: "8",
+    name: "Space Apps Challenge",
+    organizer: "NASA",
+    description: "Use NASA data to solve challenges on Earth and in space exploration.",
+    longDescription: "NASA's Space Apps Challenge is the world's largest annual hackathon. Using open NASA data, participants address challenges related to Earth observation, space exploration, and technology development. Projects range from satellite data visualization to mission planning tools.",
+    date: {
+      start: "2025-06-14",
+      end: "2025-06-16",
+      month: "JUN",
+      day: 14,
+    },
+    location: "Virtual",
+    mode: "online",
+    type: "free",
+    prize: "$20,000",
+    skills: ["Data Science", "Python", "GIS", "Visualization"],
+    eligibility: ["Open to All Ages", "Global"],
+    registrationUrl: "https://nasa.gov/spaceapps",
+    imageUrl: "",
+    participants: 10000,
+    deadline: "2025-06-01",
+  },
+];
+
+export const skills = [
+  "React",
+  "Python",
+  "Machine Learning",
+  "Web3",
+  "TensorFlow",
+  "Cloud Computing",
+  "NLP",
+  "Blockchain",
+  "Node.js",
+  "Smart Contracts",
+  "Healthcare AI",
+  "Mobile Development",
+  "Data Science",
+  "IoT",
+  "Sustainability",
+  "GIS",
+  "EdTech",
+  "Gamification",
+  "Solidity",
+  "DeFi",
+];
+
+export const domains = [
+  "Artificial Intelligence",
+  "Web Development",
+  "Mobile Development",
+  "Blockchain/Web3",
+  "Healthcare",
+  "Finance",
+  "Education",
+  "Climate/Sustainability",
+  "Space Technology",
+  "Gaming",
+];
