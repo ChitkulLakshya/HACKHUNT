@@ -8,7 +8,7 @@ export interface NormalizedHackathon {
   isPaid: boolean;
   skills: string[];
   registrationUrl: string;
-  source: 'mlh' | 'kaggle' | 'devpost';
+  source: 'mlh' | 'kaggle' | 'devpost' | 'devfolio';
   location?: string;
   prize?: string;
   imageUrl?: string;

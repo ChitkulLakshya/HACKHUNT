@@ -3,6 +3,7 @@ import { db } from '../firebaseAdmin';
 import { fetchMLHHackathons } from '../services/mlhService';
 import { fetchKaggleCompetitions } from '../services/kaggleService';
 import { scrapeDevpost } from '../services/devpostService';
+import { scrapeDevfolio } from '../services/devfolioService';
 import { NormalizedHackathon } from '../types';
 
 const saveToFirestore = async (hackathons: NormalizedHackathon[], source: string) => {
@@ -65,6 +66,12 @@ export const startScheduler = () => {
       const devpostData = await scrapeDevpost();
       await saveToFirestore(devpostData, 'Devpost');
     } catch (e) { console.error('Error fetching Devpost:', e); }
+
+    try {
+      console.log('Scraping Devfolio...');
+      const devfolioData = await scrapeDevfolio();
+      await saveToFirestore(devfolioData, 'Devfolio');
+    } catch (e) { console.error('Error fetching Devfolio:', e); }
 
     console.log('Hackathon fetch job completed.');
   });

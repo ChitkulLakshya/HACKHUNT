@@ -10,7 +10,7 @@ export interface IHackathon extends Document {
   isPaid: boolean;
   skills: string[];
   registrationUrl: string;
-  source: 'mlh' | 'kaggle' | 'devpost';
+  source: 'mlh' | 'kaggle' | 'devpost' | 'devfolio';
   lastUpdated: Date;
   location?: string; // Keeping for compatibility/extra info
   prize?: string;    // Keeping for compatibility/extra info
@@ -32,7 +32,7 @@ const HackathonSchema: Schema = new Schema({
   registrationUrl: { type: String, required: true },
   source: { 
     type: String, 
-    enum: ['mlh', 'kaggle', 'devpost'],
+    enum: ['mlh', 'kaggle', 'devpost', 'devfolio'],
     required: true 
   },
   lastUpdated: { type: Date, default: Date.now },
