@@ -44,10 +44,8 @@ const saveToFirestore = async (hackathons: NormalizedHackathon[], source: string
   }
 };
 
-export const startScheduler = () => {
-  // Run every 24 hours at midnight
-  cron.schedule('0 0 * * *', async () => {
-    console.log('Running daily hackathon fetch job...');
+export const runAllScrapers = async () => {
+    console.log('Running hackathon fetch job...');
     
     try {
       console.log('Fetching MLH...');
@@ -74,5 +72,16 @@ export const startScheduler = () => {
     } catch (e) { console.error('Error fetching Devfolio:', e); }
 
     console.log('Hackathon fetch job completed.');
+};
+
+export const startScheduler = () => {
+  // Run immediately on server start (in background)
+  console.log('Initializing scheduler... Running initial scrape.');
+  runAllScrapers();
+
+  // Run every 24 hours at midnight
+  cron.schedule('0 0 * * *', async () => {
+    console.log('Starting scheduled job...');
+    await runAllScrapers();
   });
 };

@@ -1,7 +1,20 @@
 import express, { Request, Response } from 'express';
 import { db } from '../firebaseAdmin';
+import { runAllScrapers } from '../cron/scheduler';
 
 const router = express.Router();
+
+// Trigger Scrapers Manually
+router.post('/scrape', async (req: Request, res: Response) => {
+  try {
+    console.log('Manual scrape triggered via API');
+    // Run in background to avoid timeout
+    runAllScrapers().catch(err => console.error('Manual scrape failed:', err));
+    res.json({ message: 'Scraping started in background. Check server logs for progress.' });
+  } catch (err: any) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // GET all hackathons with filters
 router.get('/', async (req: Request, res: Response) => {
