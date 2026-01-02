@@ -98,8 +98,21 @@ export const scrapeDevfolio = async (): Promise<NormalizedHackathon[]> => {
                 const cleanDate = h.dateStr.replace(/Apply by|Starts|Ends/gi, '').trim();
                 const parts = cleanDate.split('-').map((s: string) => s.trim());
                 if (parts.length >= 1) {
-                    startDate = new Date(`${parts[0]} ${currentYear}`);
-                    endDate = parts.length > 1 ? new Date(`${parts[1]} ${currentYear}`) : startDate;
+                    const parsedStart = new Date(`${parts[0]} ${currentYear}`);
+                    if (!isNaN(parsedStart.getTime())) {
+                        startDate = parsedStart;
+                    }
+                    
+                    if (parts.length > 1) {
+                        const parsedEnd = new Date(`${parts[1]} ${currentYear}`);
+                        if (!isNaN(parsedEnd.getTime())) {
+                            endDate = parsedEnd;
+                        } else {
+                            endDate = startDate;
+                        }
+                    } else {
+                        endDate = startDate;
+                    }
                 }
             } catch (e) {
                 // Keep defaults

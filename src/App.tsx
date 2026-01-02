@@ -9,7 +9,7 @@ import Hackathons from "./pages/Hackathons";
 import HackathonDetails from "./pages/HackathonDetails";
 import Alerts from "./pages/Alerts";
 import NotFound from "./pages/NotFound";
-import Login from "./components/Login";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 

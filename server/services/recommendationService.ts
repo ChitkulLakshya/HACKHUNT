@@ -14,10 +14,10 @@ export const getRecommendedHackathons = async (
 ): Promise<HackathonRecommendation[]> => {
   const apiKey = process.env.GROQ_API_KEY;
   
-  // If no API key, use fallback immediately
+  // If no API key, return empty array
   if (!apiKey) {
-    console.warn("GROQ_API_KEY is not set, using local fallback.");
-    return getFallbackRecommendations(userSkills, hackathons);
+    console.warn("GROQ_API_KEY is not set.");
+    return [];
   }
   
   // Prepare the data for the prompt
@@ -85,7 +85,7 @@ export const getRecommendedHackathons = async (
         parsed = JSON.parse(cleanContent);
       } catch (e) {
         console.error("Failed to parse Groq JSON:", e);
-        return getFallbackRecommendations(userSkills, hackathons);
+        return [];
       }
 
       let recommendations: HackathonRecommendation[] = [];
@@ -96,10 +96,6 @@ export const getRecommendedHackathons = async (
         recommendations = parsed;
       } else if (typeof parsed === 'object' && parsed.hackathonTitle) {
         recommendations = [parsed];
-      }
-
-      if (recommendations.length === 0) {
-         return getFallbackRecommendations(userSkills, hackathons);
       }
 
       return recommendations;
@@ -115,57 +111,10 @@ export const getRecommendedHackathons = async (
         return makeRequest(retries - 1, delay * 2);
       }
       
-      console.error("Error generating recommendations with Groq (switching to fallback):", error);
-      return getFallbackRecommendations(userSkills, hackathons);
+      console.error("Error generating recommendations with Groq:", error);
+      return [];
     }
   };
 
   return makeRequest();
-};
-
-const getFallbackRecommendations = (
-  userSkills: string[],
-  hackathons: NormalizedHackathon[]
-): HackathonRecommendation[] => {
-  console.log("Using local fallback algorithm for recommendations...");
-  const normalizedUserSkills = userSkills.map(s => s.toLowerCase().trim());
-
-  const scoredHackathons = hackathons.map(hackathon => {
-    let matchCount = 0;
-    const matchedSkills: string[] = [];
-
-    // Check skill matches
-    hackathon.skills.forEach(skill => {
-      if (normalizedUserSkills.some(us => skill.toLowerCase().includes(us) || us.includes(skill.toLowerCase()))) {
-        matchCount++;
-        matchedSkills.push(skill);
-      }
-    });
-
-    // Simple scoring: 20 points per skill match, max 95
-    let score = Math.min(matchCount * 20 + 10, 95);
-    
-    // Boost for title matches
-    if (normalizedUserSkills.some(us => hackathon.title.toLowerCase().includes(us))) {
-      score += 15;
-    }
-
-    return {
-      hackathon,
-      score: Math.min(score, 99),
-      matchedSkills
-    };
-  });
-
-  // Sort by score descending
-  scoredHackathons.sort((a, b) => b.score - a.score);
-
-  // Take top 3
-  return scoredHackathons.slice(0, 3).map(item => ({
-    hackathonTitle: item.hackathon.title,
-    matchScore: item.score,
-    reason: item.matchedSkills.length > 0 
-      ? `Matches your skills: ${item.matchedSkills.join(", ")}`
-      : "Recommended based on general popularity and availability."
-  }));
 };
