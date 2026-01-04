@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import { connectDB } from './utils/db';
 import hackathonRoutes from './routes/hackathons';
+import searchRoutes from './routes/search';
 import { startScheduler } from './cron/scheduler';
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/hackathons', hackathonRoutes);
+app.use('/api/search', searchRoutes);
 
 // Database Connection & Server Start
 const startServer = async () => {
